@@ -93,6 +93,9 @@
                 } else if (data.error) {
                     document.getElementById("result").textContent = "Error: " + data.error;
                 }
+            })
+            .catch(error => {
+                document.getElementById("result").textContent = "Error: " + error;
             });
         }
     </script>
