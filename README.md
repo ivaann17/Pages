@@ -1,2 +1,0 @@
-# Pages
-Prueba de GithubPages
