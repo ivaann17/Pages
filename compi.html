@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compiler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        textarea {
+            width: calc(100% - 30px); /* Considerando el padding */
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            resize: none;
+            font-size: 18px;
+            font-family: inherit;
+            color: #333;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            width: calc(100% - 30px); /* Considerando el padding */
+            height: 300px;
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-size: 18px;
+            font-family: inherit;
+            color: #333;
+        }
+        .info {
+            font-size: 16px;
+            color: #777;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <textarea id="code" rows="15" placeholder="Inserta tu código aquí" spellcheck="false"></textarea>
+        <textarea id="inputData" rows="3" placeholder="Inserta tus datos de entrada aquí" spellcheck="false"></textarea>
+        <div id="compile-button-container">
+            <!-- Aquí se insertará el botón de compilación -->
+        </div>
+        <div id="result" readonly placeholder="Aquí aparecerá el resultado" spellcheck="false"></div>
+        <div class="info">El resultado se mostrará aquí.</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            const compileButtonContainer = document.getElementById('compile-button-container');
+
+            let compileButton = '';
+
+            switch (lang) {
+                case 'java':
+                    compileButton = '<button onclick="compileCode(\'compileJ\')">Compilar Java</button>';
+                    break;
+                case 'c':
+                    compileButton = '<button onclick="compileCode(\'compileC\')">Compilar C</button>';
+                    break;
+                case 'cpp':
+                    compileButton = '<button onclick="compileCode(\'compileCpp\')">Compilar C++</button>';
+                    break;
+                case 'python':
+                    compileButton = '<button onclick="compileCode(\'compilePy\')">Compilar Python</button>';
+                    break;
+            }
+
+            compileButtonContainer.innerHTML = compileButton;
+        });
+
+        function compileCode(route) {
+            event.preventDefault();
+            var code = document.getElementById("code").value;
+            var inputData = document.getElementById("inputData").value;
+
+            fetch(`http://localhost:5000/${route}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ code: code, input_data: inputData }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.output) {
+                    document.getElementById("result").textContent = data.output;
+                } else if (data.error) {
+                    document.getElementById("result").textContent = "Error: " + data.error;
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching or parsing data:", error);
+                document.getElementById("result").textContent = "Error: " + error.message;
+            });
+        }
+    </script>
+    <script src="/Pages/javascript/p.js"></script>
+
+</body>
+</html>

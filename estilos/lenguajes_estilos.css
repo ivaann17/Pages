@@ -1,0 +1,84 @@
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('/Pages/fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url("/Pages/imagenes/fondo.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+/* CAJA COMPLETA DE FORMULARIO */
+.contenedor {
+    width: 1550px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    height: 850px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* Estilos para los iconos y etiquetas */
+#icons-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
+    grid-template-rows: repeat(2, 1fr); /* Dos filas de igual tamaño */
+    gap: 40px; /* Espacio entre los iconos */
+    padding: 20px;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon-item img {
+    width: 200px; /* Ancho deseado para los iconos */
+    height: 200px; /* Altura deseada para los iconos */
+    transition: transform 0.3s ease;
+}
+
+.icon-item img:hover {
+    transform: scale(1.1); /* Agrandar el icono al pasar el ratón por encima */
+}
+
+.icon-item p {
+    margin-top: 10px; /* Espacio entre el icono y la etiqueta */
+    font-size: 16px; /* Tamaño de fuente de la etiqueta */
+    font-weight: 600; /* Grosor de la fuente */
+    font-family: 'Montserrat', sans-serif; /* Asegurando que la fuente sea consistente */
+    color: #333; /* Color del texto */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    padding: 5px 10px; /* Relleno alrededor del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra del texto */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.icon-item p:hover {
+    background-color: #333; /* Color de fondo al pasar el ratón por encima */
+    color: #fff; /* Color de texto al pasar el ratón por encima */
+}

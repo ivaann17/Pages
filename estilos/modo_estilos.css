@@ -1,0 +1,76 @@
+/* Estilos adicionales para el efecto de escritura */
+
+
+* {
+    font-family: 'Rubik Bubbles', sans-serif;
+    margin: 2px;
+}
+
+
+@font-face {
+    font-family: 'Rubik Bubbles';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('/Pages/fonts/RubikBubbles-Regular.ttf') format('truetype');
+}
+
+.texto-animado {
+    overflow: hidden;
+    white-space: nowrap;
+    color: #F9F9F9;
+}
+
+.letra-animada {
+    display: inline-block;
+    opacity: 0;
+    animation: escribir 1s forwards;
+}
+
+@keyframes escribir {
+    to {
+        opacity: 1;
+    }
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: url("/Pages/imagenes/fondo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.pizarra {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    background-image: url("/Pages/imagenes/textura_pizarra.jpg");
+    background-size: cover;
+    border: 15px solid #c8a165;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.icono {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px;
+}
+
+.icono img {
+    width: 90px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.icono img:hover {
+    transform: scale(1.1);
+}

@@ -1,104 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/e2cadef7f3.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compiler</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f5f5f5;
-        }
-        .container {
-            width: 80%;
-            max-width: 800px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-        textarea {
-            width: calc(100% - 30px); /* Considerando el padding */
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 2px solid #007bff;
-            border-radius: 8px;
-            resize: none;
-            font-size: 18px;
-            font-family: inherit;
-            color: #333;
-        }
-        button {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            background-color: #007bff;
-            color: #fff;
-            font-size: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #result {
-            width: calc(100% - 30px); /* Considerando el padding */
-            height: 300px;
-            margin-top: 20px;
-            padding: 15px;
-            border: 2px solid #007bff;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            font-size: 18px;
-            font-family: inherit;
-            color: #333;
-        }
-        .info {
-            font-size: 16px;
-            color: #777;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="estilos/estilos_login.css">
+    <title>Login</title>
 </head>
+
 <body>
-    <div class="container">
-        <textarea id="code" rows="15" placeholder="Inserta tu código aquí" spellcheck="false"></textarea>
-        <button onclick="compile()">Compilar</button>
-        <div id="result" readonly placeholder="Aquí aparecerá el resultado" spellcheck="false"></div>
-        <div class="info">El resultado se mostrará aquí.</div>
-    </div>
+    
+    <section>
+        <div class="contenedor" id="form-login">
+            <div class="formulario">
+                <form action="#" id="form-log"> <!-- Añadido id="form-login" -->
+                    <h2>Iniciar Sesión</h2>
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" name="email" required placeholder="Introduce tu email" id="email" autocomplete="off">
+                        <label for="email" id="lblEmail">Email </label> <!-- Cambiado for="#" a for="email" -->
+                    </div>
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" name="password" required placeholder="Introduce tu contraseña" id="password">
+                        <label for="password" id="lblContra">Contraseña</label> <!-- Cambiado for="#" a for="password" -->
+                    </div>
+                    <div class="olvidar">
+                        <label for="check">
+                            <input type="checkbox"> Recordar datos
+                            <a href="#" id="olvidar">Olvidé la contraseña</a>
+                        </label>
+                    </div>
+                    <div>
+                        <button type="submit" id="btn_acceder" name="btn_acceder">Acceder</button> <!-- Cambiado a type="submit" y añadido name="btn_acceder" -->
+                    </div>
+                    <div class="registrar">
+                        <p>¿No tienes cuenta todavía? <a href="#" id="registrar">Crea una</a> </p>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-    <script>
-        function compile() {
-            var code = document.getElementById("code").value;
-            fetch('http://localhost:5000/compile', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ code: code }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.output) {
-                    document.getElementById("result").textContent = data.output;
-                } else if (data.error) {
-                    document.getElementById("result").textContent = "Error: " + data.error;
-                }
-            })
-            .catch(error => {
-                document.getElementById("result").textContent = "Error: " + error;
-            });
-        }
-
+        <div class="contenedor" id="form-registro" style="display: none;">
+            <div class="formulario">
+                <form action="#" id="form-reg">
+                    <h2>Registrarse</h2>                                      
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" required placeholder="Introduce tu usuario" name= "user_reg" id="user_reg">
+                        <label for="#" id="lblUsuario">Usuario</label>
+                    </div>
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" required placeholder="Introduce tu correo" name= "email_reg" id="email_reg">
+                        <label for="#" id="lblMail">Email</label>
+                    </div>
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" required placeholder="Introduce tu contraseña" name= "pass_reg" id="pass_reg">
+                        <label for="#" id="lblPassReg">Contraseña</label>
+                    </div> 
+                    <div class="contenedor-palabras">
+                        <span class="palabra-estudiante">Estudiante</span>
+                        <input type="checkbox" name="switch" id="switch">
+                        <label for="switch" class="lbl"></label>
+                        <span class="palabra-profesor">Profesor</span>
+                    </div>  
+                    <div>
+                        <button id="btn_registrarse">Crear Cuenta</button>
+                    </div>   
+                    <div class="registrar">
+                        <p>¿Ya tienes una cuenta? <a href="#" id="login">Acceder</a> </p>
+                    </div>   
+                </form>
+                       
+            </div>
+        
+        </div>
+        <div class="contenedor" id="form-olvidado" style="display: none;">
+            <div class="formulario">
+                <form action="form-olvidado" >
+                    <h2>Recupera tu cuenta</h2>                                      
+                    <div class="input-contenedor-olvidado">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" required placeholder="Introduce tu correo">
+                        <label for="#">Email</label>
+                    </div>
+                    <div>
+                        <button id="btn_recuperar">Recuperar</button>
+                    </div>    
+                </form>
+                       
+            </div>
+        
+        </div>
+    </section>
+    
+    <script src="/Pages/javascript/animaciones_login.js"></script>
+    <script> 
     </script>
+
 </body>
 </html>
