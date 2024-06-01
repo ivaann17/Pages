@@ -1,3 +1,23 @@
+// ANIMACIONES
+function ver_form_olvidado_Click() {
+    var contenedorLogin = document.getElementById('form-login');
+    var contenedorOlvidado = document.getElementById('form-olvidado');
+
+    document.getElementById('olvidar').addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        contenedorLogin.classList.add('fade-out');
+        contenedorLogin.addEventListener('transitionend', function handleTransitionEnd() {
+            contenedorLogin.removeEventListener('transitionend', handleTransitionEnd);
+            
+            contenedorLogin.style.display = 'none';
+            contenedorOlvidado.style.display = 'flex';
+            contenedorLogin.classList.remove('fade-out');
+        });
+    });
+}
+
+
 function ver_form_registrar_Click() {
     var contenedorLogin = document.getElementById('form-login');
     var contenedorRegistro = document.getElementById('form-registro');
@@ -33,25 +53,7 @@ function ver_form_login_Click() {
         });
     });
 }
-/*
-function acierto_login() {
-    var contenedorRegistro = document.getElementById('form-registro');
-    var contenedorLogin = document.getElementById('form-login');
 
-    document.getElementById('btn_registrarse').addEventListener('click', function(event) {
-        event.preventDefault();
-        
-        contenedorRegistro.classList.add('success');
-        contenedorRegistro.addEventListener('transitionend', function handleTransitionEnd() {
-            contenedorRegistro.removeEventListener('transitionend', handleTransitionEnd);
-            
-            contenedorRegistro.style.display = 'none';
-            contenedorLogin.style.display = 'flex';
-            contenedorRegistro.classList.remove('success');
-        });
-    });
-}
-*/
 function animacion_exito(formularioId, siguientePag) {
     var contenedorFormulario = document.getElementById(formularioId);
     if (contenedorFormulario) {
@@ -103,7 +105,7 @@ function animacion_error(formularioId, contraInputId, labelEmailId, labelPassId,
 
 
 
-
+// FUNCIONES PHP PARA BASE DE DATOS
 
 function comprobar_login() {
     const formLogin = document.getElementById("form-log");
@@ -197,23 +199,6 @@ function registrar() {
 }
 
 
-function ver_form_olvidado_Click() {
-    var contenedorLogin = document.getElementById('form-login');
-    var contenedorOlvidado = document.getElementById('form-olvidado');
-
-    document.getElementById('olvidar').addEventListener('click', function(event) {
-        event.preventDefault();
-        
-        contenedorLogin.classList.add('fade-out');
-        contenedorLogin.addEventListener('transitionend', function handleTransitionEnd() {
-            contenedorLogin.removeEventListener('transitionend', handleTransitionEnd);
-            
-            contenedorLogin.style.display = 'none';
-            contenedorOlvidado.style.display = 'flex';
-            contenedorLogin.classList.remove('fade-out');
-        });
-    });
-}
 
 
 
